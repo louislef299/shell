@@ -1,6 +1,7 @@
 # Ignore build binaries
 lsh*/**
 lsh
+*.o
 
 # Ignore C/C++ extensions
 .vscode/**

@@ -1,11 +1,12 @@
 .DEFAULT_GOAL := default
 
 GCC=/usr/bin/gcc
-FLAGS=-Wall -g
 
+default: shell.o
+	$(GCC) -Wall main.c shell.o -o lsh -g
 
-default: 
-	$(GCC) $(FLAGS) main.c -o lsh
+shell.o: shell.c shell.h
+	$(GCC) -Wall shell.c -c -o shell.o -g
 
 clean:
 	rm -rf *.o lsh lsh.*
