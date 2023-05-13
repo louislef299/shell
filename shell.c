@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "shell.h"
+#include "fs.h"
 
 /*
   Function Declarations for builtin shell commands:
@@ -14,7 +15,13 @@ int lsh_help(char **args);
 int lsh_exit(char **args);
 
 // File system commands
-// int lsh_fs(char **args);
+int fs_debug(char **args);
+int fs_format(char **args);
+int fs_mount(char **args);
+int fs_unmount(char **args);
+int fs_create(char **args);
+int fs_delete(char **args);
+int fs_getsize(char **args);
 
 /*
   List of builtin commands, followed by their corresponding functions.
@@ -22,13 +29,30 @@ int lsh_exit(char **args);
 char *builtin_str[] = {
   "cd",
   "help",
-  "exit"
+  "exit",
+  "format",
+  "mount",
+  "unmount",
+  "debug",
+  "create",
+  "delete  <inode>",
+  "getsize <inode>",
+  "cat     <inode>",
+  "copyin  <file> <inode>",
+  "copyout <inode> <file>"
 };
 
 int (*builtin_func[]) (char **) = {
   &lsh_cd,
   &lsh_help,
-  &lsh_exit
+  &lsh_exit,
+  &fs_debug,
+  &fs_format,
+  &fs_mount,
+  &fs_unmount,
+  &fs_create,
+  &fs_delete,
+  &fs_getsize
 };
 
 /*
