@@ -13,6 +13,8 @@ static int nblocks=0;
 static int nreads=0;
 static int nwrites=0;
 
+// Open file if exists(r+) otherwise, create the file for writing
+// and truncate. Instantiate fs variables
 int disk_init( const char *filename, int n ) {
 	diskfile = fopen(filename,"r+");
 	if(!diskfile) diskfile = fopen(filename,"w+");
