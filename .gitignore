@@ -3,5 +3,8 @@ lsh*/**
 lsh
 *.o
 
+# Emulated disks
+image*
+
 # Ignore C/C++ extensions
 .vscode/**
