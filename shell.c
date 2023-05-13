@@ -30,16 +30,16 @@ char *builtin_str[] = {
   "cd",
   "help",
   "exit",
+  "debug",
   "format",
   "mount",
   "unmount",
-  "debug",
   "create",
-  "delete  <inode>",
-  "getsize <inode>",
-  "cat     <inode>",
-  "copyin  <file> <inode>",
-  "copyout <inode> <file>"
+  "delete",
+  "getsize",
+  "cat",
+  "copyin",
+  "copyout"
 };
 
 int (*builtin_func[]) (char **) = {
