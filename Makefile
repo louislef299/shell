@@ -1,6 +1,6 @@
 .DEFAULT_GOAL := default
 
-GCC=/usr/bin/gcc
+GCC ?= /usr/bin/gcc
 
 default: shell.o fs.o disk.o
 	$(GCC) -Wall main.c shell.o disk.o fs.o -o lsh -g
@@ -14,5 +14,9 @@ fs.o: fs.c fs.h
 disk.o: disk.c disk.h
 	$(GCC) -Wall disk.c -c -o disk.o -g
 
+container:
+	docker build -t lsh .
+
 clean:
 	rm -rf *.o lsh lsh.*
+	docker container prune -f && docker image prune -f
