@@ -1,22 +1,23 @@
 .DEFAULT_GOAL := default
 
-GCC ?= /usr/bin/gcc
+# https://andrewkelley.me/post/zig-cc-powerful-drop-in-replacement-gcc-clang.html
+GCC ?= zig cc
 
-default: shell.o fs.o disk.o
-	$(GCC) -Wall main.c shell.o disk.o fs.o -o lsh -g
+default: src/shell.o src/fs.o src/disk.o
+	$(GCC) -Wall src/main.c src/shell.o src/disk.o src/fs.o -o lsh -g
 
-shell.o: shell.c shell.h
-	$(GCC) -Wall shell.c -c -o shell.o -g
+src/shell.o: src/shell.c src/shell.h src/fs.h
+	$(GCC) -Wall src/shell.c -c -o src/shell.o -g
 
-fs.o: fs.c fs.h
-	$(GCC) -Wall fs.c -c -o fs.o -g
+src/fs.o: src/fs.c src/fs.h src/disk.h
+	$(GCC) -Wall src/fs.c -c -o src/fs.o -g
 
-disk.o: disk.c disk.h
-	$(GCC) -Wall disk.c -c -o disk.o -g
+src/disk.o: src/disk.c src/disk.h
+	$(GCC) -Wall src/disk.c -c -o src/disk.o -g
 
 container:
 	docker build -t lsh .
 
 clean:
-	rm -rf *.o lsh lsh.*
+	rm -rf src/*.o lsh lsh.*
 	docker container prune -f && docker image prune -f
