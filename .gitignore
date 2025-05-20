@@ -11,3 +11,4 @@ image*
 
 # Build Cache
 .zig-cache
+zig-out
