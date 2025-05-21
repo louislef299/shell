@@ -1,13 +1,12 @@
 # syntax=docker/dockerfile:1.7
-FROM alpine:latest
+FROM alpine:edge
 
-RUN apk add --no-cache build-base
+RUN apk add --no-cache build-base zig
 
 WORKDIR /app
 
 COPY . .
 
-ENV GCC=gcc
-RUN make
+RUN zig build
 
-CMD ["/app/lsh", "store", "2000"]
+CMD ["/app/zig-out/bin/lsh", "store", "2000"]

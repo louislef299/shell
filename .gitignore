@@ -8,3 +8,7 @@ image*
 
 # Ignore C/C++ extensions
 .vscode/**
+
+# Build Cache
+.zig-cache
+zig-out
