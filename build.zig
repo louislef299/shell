@@ -6,9 +6,11 @@ pub fn build(b: *std.Build) void {
 
     const lsh = b.addExecutable(.{
         .name = "lsh",
-        .target = target,
-        .optimize = optimize,
-        .link_libc = true,
+        .root_module = b.createModule(.{
+            .target = target,
+            .optimize = optimize,
+            .link_libc = true,
+        }),
     });
     lsh.addCSourceFiles(.{ .files = &.{
         "src/disk.c",
