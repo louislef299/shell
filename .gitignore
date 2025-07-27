@@ -2,6 +2,7 @@
 lsh*/**
 lsh
 *.o
+.zig-cache
 
 # Emulated disks
 image*
